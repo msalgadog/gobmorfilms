@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba - Sistema de Filtrado Dinámico</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="locaciones-cards-swiper.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Twogethersansvar Roman", system-ui, sans-serif;
+            background-color: #f5f4f2;
+            padding: 40px 20px;
+            color: #444837;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2E3B2B;
+        }
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2E3B2B;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Prueba del Sistema de Filtrado Dinámico</h1>
+        
+        <div class="info-box">
+            <div class="section-title">✅ Instrucciones de Prueba:</div>
+            <ol>
+                <li>Abre la consola del navegador (F12)</li>
+                <li>Verifica que se muestre el overlay de carga</li>
+                <li>El overlay debería desaparecer después de unos segundos</li>
+                <li>Haz clic en una categoría para filtrar locaciones</li>
+                <li>Verifica que el overlay se muestre mientras filtra</li>
+                <li>Revisa la consola para mensajes de depuración</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <div class="section-title">📁 Archivos Cargados:</div>
+            <ul>
+                <li>✓ loading-overlay.js - Sistema de overlay de carga</li>
+                <li>✓ locaciones-cards-swiper.js - Sistema de filtrado dinámico</li>
+                <li>✓ locaciones-cards-swiper.css - Estilos de cards</li>
+            </ul>
+        </div>
+
+        <!-- Mini Cards (Filtros) -->
+        <div class="info-box">
+            <div class="section-title">Categorías (Mini Cards):</div>
+            <div class="morv3-cfm-mini-cards-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                <div class="morv3-cfm-mini-card" data-categoria="agricultura" style="padding: 15px; border: 1px solid #e4e3d6; border-radius: 8px; text-align: center; cursor: pointer; background: white;">
+                    🌾 Agricultura
+                </div>
+                <div class="morv3-cfm-mini-card" data-categoria="haciendas" style="padding: 15px; border: 1px solid #e4e3d6; border-radius: 8px; text-align: center; cursor: pointer; background: white;">
+                    🏠 Haciendas
+                </div>
+                <div class="morv3-cfm-mini-card" data-categoria="areas-verdes" style="padding: 15px; border: 1px solid #e4e3d6; border-radius: 8px; text-align: center; cursor: pointer; background: white;">
+                    🌳 Áreas Verdes
+                </div>
+                <div class="morv3-cfm-mini-card" data-categoria="carreteras-calles" style="padding: 15px; border: 1px solid #e4e3d6; border-radius: 8px; text-align: center; cursor: pointer; background: white;">
+                    🛣️ Carreteras
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards de Locación -->
+        <div class="info-box">
+            <div class="section-title">Locaciones (Swiper):</div>
+            <div class="morv3-cards-locaciones-swiper-col swiper">
+                <div class="morv3-cards-locaciones-wrapper swiper-wrapper">
+                    <!-- AGRICULTURA -->
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Agricultura" 
+                         locacion-nombre="campos-maiz">
+                        <div style="padding: 15px; background: #f0f0f0; border-radius: 8px;">
+                            <strong>Campos de Maíz</strong><br>
+                            <small>Agricultura - Axochiapan</small>
+                        </div>
+                    </div>
+
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Agricultura" 
+                         locacion-nombre="campos-cebolla">
+                        <div style="padding: 15px; background: #f0f0f0; border-radius: 8px;">
+                            <strong>Campos de Cebolla</strong><br>
+                            <small>Agricultura - Axochiapan</small>
+                        </div>
+                    </div>
+
+                    <!-- HACIENDAS -->
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Haciendas" 
+                         locacion-nombre="hacienda-san-gabriel">
+                        <div style="padding: 15px; background: #e8f4f8; border-radius: 8px;">
+                            <strong>Hacienda San Gabriel</strong><br>
+                            <small>Haciendas - Amacuzac</small>
+                        </div>
+                    </div>
+
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Haciendas" 
+                         locacion-nombre="hacienda-mexicana">
+                        <div style="padding: 15px; background: #e8f4f8; border-radius: 8px;">
+                            <strong>Hacienda Mexicana</strong><br>
+                            <small>Haciendas - Tlaltizapán</small>
+                        </div>
+                    </div>
+
+                    <!-- ÁREAS VERDES -->
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Áreas Verdes" 
+                         locacion-nombre="bosque-chapultepec">
+                        <div style="padding: 15px; background: #e8f5e9; border-radius: 8px;">
+                            <strong>Bosque Chapultepec</strong><br>
+                            <small>Áreas Verdes - Cuautla</small>
+                        </div>
+                    </div>
+
+                    <!-- CARRETERAS -->
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Carreteras / Calles" 
+                         locacion-nombre="carretera-federal">
+                        <div style="padding: 15px; background: #fff3e0; border-radius: 8px;">
+                            <strong>Carretera Federal</strong><br>
+                            <small>Carreteras - Cuautla</small>
+                        </div>
+                    </div>
+
+                    <div class="morv3-cards-locaciones-item swiper-slide" 
+                         data-fs-catid="Carreteras / Calles" 
+                         locacion-nombre="puente-atlacahuayola">
+                        <div style="padding: 15px; background: #fff3e0; border-radius: 8px;">
+                            <strong>Puente Atlacahuayola</strong><br>
+                            <small>Carreteras - Axochiapan</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <div class="section-title">📊 Estado del Sistema:</div>
+            <div id="debug-info" style="font-family: monospace; background: #f5f5f5; padding: 10px; border-radius: 4px;">
+                Cargando información...
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts en orden correcto -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="loading-overlay.js"></script>
+    <script>
+        // Mapeo de categorías
+        const categoriaMap = {
+            'agricultura': 'Agricultura',
+            'haciendas': 'Haciendas',
+            'areas-verdes': 'Áreas Verdes',
+            'carreteras-calles': 'Carreteras / Calles'
+        };
+        console.log('✓ categoriaMap definido:', categoriaMap);
+    </script>
+    <script src="locaciones-cards-swiper.js"></script>
+    
+    <!-- Debug Script -->
+    <script>
+        function updateDebugInfo() {
+            const debugEl = document.getElementById('debug-info');
+            const overlayVisible = window.Morv3LoadingOverlay?.isVisible?.() ?? 'desconocido';
+            const activeCategory = window.Morv3CfmCategoryFilter?.getActiveCategory?.() ?? 'Ninguna';
+            const cardCount = document.querySelectorAll('.morv3-cards-locaciones-item:not([style*="display: none"])').length;
+            
+            debugEl.innerHTML = `
+Overlay visible: ${overlayVisible}
+Categoría activa: ${activeCategory}
+Cards visibles: ${cardCount}
+Estado: Sistema listo
+
+Prueba clickeando en una categoría arriba.
+            `;
+        }
+
+        // Update cada 500ms
+        setInterval(updateDebugInfo, 500);
+        updateDebugInfo();
+
+        console.log('✓ Sistema de prueba cargado');
+        console.log('✓ Funciones disponibles en window:', {
+            'Morv3LoadingOverlay': typeof window.Morv3LoadingOverlay,
+            'Morv3CfmCategoryFilter': typeof window.Morv3CfmCategoryFilter,
+            'Swiper': typeof window.Swiper
+        });
+    </script>
+</body>
+</html>

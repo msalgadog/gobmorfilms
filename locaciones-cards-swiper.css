@@ -1,0 +1,388 @@
+/* ===================================================== */
+/* CUADRÍCULA RESPONSIVA CON SWIPERJS EN MÓVIL          */
+/* ===================================================== */
+
+/* Variables CSS (valores por defecto si no están definidas) */
+:root {
+  --_morv3-sizes---space--morv3-gap-sm: 12px;
+  --_morv3-sizes---space--morv3-gap-lg: 24px;
+  --_morv3-themes---border--morv3-border-low: #e4e3d6;
+  --_morv3-global---border-radius--morv3-border-radius-round: 999px;
+  --_morv3-themes---background--morv3-bg-surface-low: #f5f4f2;
+  --_morv3-sizes---fontfamily--morv3-title: "Twogethersansvar Roman", system-ui, sans-serif;
+}
+
+/* ===================================================== */
+/* 1. CONTENEDOR PRINCIPAL - DESKTOP (Grid)             */
+/* ===================================================== */
+
+.morv3-cfm-mini-cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr; /* Todas las filas tienen la misma altura */
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  align-items: stretch; /* Estirar items para que ocupen toda la altura de la fila */
+}
+
+/* ===================================================== */
+/* 2. CARD INDIVIDUAL                                    */
+/* ===================================================== */
+
+.morv3-cfm-mini-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%; /* Asegurar que use toda la altura disponible */
+  min-height: 55px; /* Altura mínima base */
+  padding-top: var(--_morv3-sizes---space--morv3-gap-sm);
+  padding-right: var(--_morv3-sizes---space--morv3-gap-lg);
+  padding-bottom: var(--_morv3-sizes---space--morv3-gap-sm);
+  padding-left: var(--_morv3-sizes---space--morv3-gap-lg);
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: var(--_morv3-themes---border--morv3-border-low);
+  border-right-color: var(--_morv3-themes---border--morv3-border-low);
+  border-bottom-color: var(--_morv3-themes---border--morv3-border-low);
+  border-left-color: var(--_morv3-themes---border--morv3-border-low);
+  border-top-left-radius: var(--_morv3-global---border-radius--morv3-border-radius-round);
+  border-top-right-radius: var(--_morv3-global---border-radius--morv3-border-radius-round);
+  border-bottom-left-radius: var(--_morv3-global---border-radius--morv3-border-radius-round);
+  border-bottom-right-radius: var(--_morv3-global---border-radius--morv3-border-radius-round);
+  background-color: var(--_morv3-themes---background--morv3-bg-surface-low);
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 2px 2px 0px;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.morv3-cfm-mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 8px 0px;
+}
+
+/* ===================================================== */
+/* 3. BOTONES DE NAVEGACIÓN (ocultos por defecto)       */
+/* ===================================================== */
+
+.swiper-navigation-buttons {
+  display: none; /* Oculto por defecto (solo visible cuando Swiper está activo) */
+}
+
+/* ===================================================== */
+/* 4. CONTENIDO, ICONO Y TÍTULO                         */
+/* ===================================================== */
+
+.morv3-cfm-mini-card-content {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+.morv3-cfm-mini-card-icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.morv3-cfm-mini-card-title {
+  font-family: var(--_morv3-sizes---fontfamily--morv3-title);
+  color: rgb(68, 72, 55);
+  font-size: 22px;
+  line-height: 1.2; /* Altura de línea fija */
+  font-style: normal;
+  font-weight: 400;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Máximo 2 líneas de texto */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  word-wrap: break-word;
+  min-height: 1.2em; /* Altura mínima para una línea */
+  max-height: 2.4em; /* Altura máxima para dos líneas (1.2em * 2) */
+}
+
+/* ===================================================== */
+/* RESPONSIVE - TABLET (768px - 1200px)                  */
+/* ===================================================== */
+
+@media screen and (max-width: 1200px) and (min-width: 768px) {
+  .morv3-cfm-mini-cards-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr; /* Mantener altura uniforme */
+    gap: 20px;
+    align-items: stretch;
+  }
+}
+
+/* ===================================================== */
+/* RESPONSIVE - MÓVIL Y TABLET PEQUEÑA (< 768px) - SWIPERJS */
+/* Carrusel de 4 cards por slide desde 480px en adelante */
+/* ===================================================== */
+
+@media screen and (max-width: 767px) {
+  /* Wrapper para contenedor y botones */
+  .cards-swiper-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 80px; /* Espacio para los botones abajo */
+  }
+  
+  /* Contenedor se convierte en Swiper */
+  .morv3-cfm-mini-cards-container.swiper {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Wrapper de Swiper - creado automáticamente por JavaScript */
+  .morv3-cfm-mini-cards-container.swiper .swiper-wrapper {
+    display: flex;
+    flex-direction: row; /* Slides en fila horizontal */
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    transition-property: transform;
+    box-sizing: content-box;
+  }
+
+  /* Cada slide contiene 4 cards en columna vertical */
+  .morv3-cfm-mini-cards-container.swiper .swiper-slide {
+    display: flex;
+    flex-direction: column; /* Cards apiladas verticalmente */
+    flex-shrink: 0;
+    width: 100%; /* Cada slide ocupa todo el ancho disponible */
+    gap: 16px; /* Espacio entre cards verticales */
+    box-sizing: border-box;
+    align-items: stretch;
+  }
+  
+  /* Cards individuales dentro de cada slide (ya no son swiper-slide directamente) */
+  .morv3-cfm-mini-cards-container.swiper .swiper-slide > .morv3-cfm-mini-card {
+    display: flex !important;
+    width: 100% !important; /* Cada card ocupa todo el ancho del slide */
+    height: auto;
+    min-height: 55px;
+    padding-right: 16px;
+    padding-left: 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Contenedor de botones de navegación (fuera del swiper, abajo a la derecha) */
+  /* Solo visible cuando Swiper está activo (móvil) */
+  .swiper-navigation-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px; /* Gap de 8px según Figma */
+    align-items: center;
+    justify-content: flex-end; /* Alineados a la derecha */
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px; /* Espacio desde el contenedor de cards */
+    z-index: 10;
+  }
+  
+  /* Botones de navegación - Diseño exacto de Figma */
+  .swiper-button-prev-cards,
+  .swiper-button-next-cards {
+    position: relative;
+    width: 52px; /* Tamaño exacto de Figma */
+    height: 52px; /* Tamaño exacto de Figma */
+    margin: 0;
+    padding: 12px; /* Padding de 12px según Figma */
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f4f2; /* bg-[var(--sem/accent/inverse,#f5f4f2)] */
+    border: 1px solid #e4e3d6; /* border-[var(--sem/border/low,#e4e3d6)] */
+    border-radius: 999px; /* rounded-[var(--semantic/border-radius/round,999px)] */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Iconos SVG dentro de los botones */
+  .swiper-button-prev-cards svg,
+  .swiper-button-next-cards svg {
+    width: 24px; /* size-[24px] */
+    height: 24px; /* size-[24px] */
+    flex-shrink: 0;
+  }
+  
+  .swiper-button-prev-cards:hover,
+  .swiper-button-next-cards:hover {
+    background: #e8e7e0; /* Ligeramente más oscuro al hover */
+    border-color: #d4d3c8;
+  }
+  
+  .swiper-button-prev-cards:active,
+  .swiper-button-next-cards:active {
+    transform: scale(0.95);
+  }
+  
+  /* Estado deshabilitado */
+  .swiper-button-prev-cards.swiper-button-disabled,
+  .swiper-button-next-cards.swiper-button-disabled {
+    opacity: 0.5; /* opacity-50 según Figma */
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Título en móvil y tablet pequeña */
+  .morv3-cfm-mini-card-title {
+    font-size: 18px;
+    line-height: 1.2;
+    max-height: 2.16em; /* Altura máxima para dos líneas */
+  }
+
+  /* Icono en móvil y tablet pequeña */
+  .morv3-cfm-mini-card-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Espaciado entre slides (manejado por Swiper spaceBetween) */
+  .morv3-cfm-mini-card.swiper-slide:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+
+/* ===================================================== */
+/* RESPONSIVE - MÓVIL PEQUEÑO (< 480px)                  */
+/* ===================================================== */
+
+@media screen and (max-width: 480px) {
+  /* En móvil pequeño, Swiper maneja el ancho automáticamente (2 cards) */
+  
+  .swiper-button-prev-cards,
+  .swiper-button-next-cards {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .swiper-button-prev-cards {
+    left: 5px;
+  }
+  
+  .swiper-button-next-cards {
+    right: 5px;
+  }
+  
+  .swiper-button-prev-cards::after,
+  .swiper-button-next-cards::after {
+    font-size: 16px;
+  }
+}
+
+/* ===================================================== */
+/* BOTONES DE NAVEGACIÓN - OCULTOS POR DEFECTO           */
+/* ===================================================== */
+
+.swiper-navigation-buttons {
+  display: none; /* Oculto por defecto (desktop/tablet) */
+}
+
+.swiper-button-prev-cards,
+.swiper-button-next-cards {
+  display: none; /* Oculto por defecto (desktop/tablet) */
+}
+
+/* ===================================================== */
+/* ESTADOS DE FILTRADO                                    */
+/* ===================================================== */
+
+.morv3-cfm-mini-card.filtered-out {
+  display: none !important;
+}
+
+.morv3-cfm-mini-card.fade-in {
+  animation: fadeInCard 0.3s ease-in;
+}
+
+.morv3-cfm-mini-card.fade-out {
+  animation: fadeOutCard 0.3s ease-out;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOutCard {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* ===================================================== */
+/* CATEGORÍA ACTIVA                                       */
+/* ===================================================== */
+
+.morv3-cfm-mini-card.active-category {
+  background-color: #e8e7e0 !important;
+  border-color: #d4d3c8 !important;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 8px 0px !important;
+}
+
+/* ===================================================== */
+/* SWIPER HORIZONTAL PARA LOCACIONES (TODOS BREAKPOINTS) */
+/* ===================================================== */
+
+.morv3-cards-locaciones-swiper-col {
+  width: 100%;
+  overflow: hidden;
+}
+
+.morv3-cards-locaciones-swiper-col .morv3-cards-locaciones-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.morv3-cards-locaciones-swiper-col .morv3-cards-locaciones-item {
+  width: auto;
+  min-width: 260px;
+  display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .morv3-cards-locaciones-swiper-col .morv3-cards-locaciones-item {
+    min-width: 300px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .morv3-cards-locaciones-swiper-col .morv3-cards-locaciones-item {
+    min-width: 340px;
+  }
+}
