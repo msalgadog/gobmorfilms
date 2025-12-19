@@ -1,0 +1,13 @@
+{
+  "name": "gobmorfilms",
+  "version": "1.0.0",
+  "description": "Repositorio para js de gobmor",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["gobmor", "films", "cdn"],
+  "author": "",
+  "license": "ISC"
+}
